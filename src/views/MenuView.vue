@@ -66,6 +66,7 @@ defineExpose({
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
       </svg>
     </button>
+
     <!-- 猜灯谜 -->
     <button
       v-if="lanternButtonVisible"
@@ -76,6 +77,23 @@ defineExpose({
       猜灯谜
     </button>
     <LanternRiddle ref="LanternRiddleRef" />
+
+    <!-- 个人信息 -->
+    <button class="btn fixed bottom-5" onclick="my_modal_1.showModal()">查看开发者信息</button>
+    <dialog id="my_modal_1" class="modal">
+      <div class="modal-box">
+        <h3 class="font-bold text-lg">开发者信息</h3>
+        <p class="py-4 text-lg">姓名：范春阳</p>
+        <p class="py-4 text-lg">学号：07212668</p>
+        <p class="py-4 text-lg">学院：环境与测绘学院</p>
+        <p class="py-4 text-lg">班级：遥感科学与技术2021-01班</p>
+        <div class="modal-action">
+          <form method="dialog">
+            <button class="btn">关闭</button>
+          </form>
+        </div>
+      </div>
+    </dialog>
   </div>
 </template>
 
