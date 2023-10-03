@@ -1,65 +1,60 @@
 <script lang="ts" setup>
 import { ref } from 'vue'
 import Button from 'primevue/button'
-import LanternRiddle from '../components/MenuView/LanternRiddle.vue'
+import IntroZhong from '../components/MenuView/IntroZhong.vue'
+import YueBing from '../components/MenuView/YueBing.vue';
 
-const show = ref(false)
-const showButton = ref(false)
+// 显示菜单的变量
+const menuVisible = ref(false)
+// 显示按钮的变量
+const buttonVisible = ref(false)
 
-const showMenu = () => {
-  show.value = true
+// 定义打开菜单的方法
+const onMenuOpen = () => {
+  menuVisible.value = true // 显示菜单
   setTimeout(() => {
-    showButton.value = true
-  }, 500)
-}
-
-const closeMenu = () => {
-  // 获取menu、closeMenu、openModal
-  const menuEl = document.getElementById('menu')
-  const closeMenuEl = document.getElementById('closeMenu')
-  const openLanternRiddleEl = document.getElementById('openLanternRiddle')
-  // 隐藏menu、closeMenu、openModal
-  closeMenuEl!.classList.add('animate__zoomOutDown')
-  openLanternRiddleEl!.classList.add('animate__zoomOutDown')
-  setTimeout(() => {
-    menuEl!.classList.add('animate__backOutDown')
-  }, 500)
-  setTimeout(() => {
-    show.value = false
+    buttonVisible.value = true // 显示按钮
   }, 1000)
 }
 
-// 猜灯谜
-const lanternButtonVisible = ref(true)
-const LanternRiddleRef = ref<any>()
-const showLanternRiddle = () => {
-  // 隐藏灯谜按钮
-  lanternButtonVisible.value = false
-  // 隐藏关闭菜单按钮
-  const closeMenuEl = document.getElementById('closeMenu')
-  closeMenuEl!.classList.add('animate__zoomOutDown')
-  const openLanternRiddleEl = document.getElementById('openLanternRiddle')
-  openLanternRiddleEl!.classList.add('animate__zoomOutUp')
-  LanternRiddleRef.value.showLanternRiddle()
+// 定义关闭菜单的方法
+const onMenuClose = () => {
+  // 获取menu、closeMenu
+  const menuEl = document.getElementById('menu')
+  const closeMenuEl = document.getElementById('close-menu')
+  // 隐藏menu、closeMenu、openModal
+  closeMenuEl!.classList.add('animate__zoomOutDown') // 关闭按钮向下退出
+  setTimeout(() => {
+    menuEl!.classList.add('animate__backOutDown') // 菜单向下退出
+  }, 500)
+  setTimeout(() => {
+    menuVisible.value = false // 隐藏菜单
+  }, 1000)
+}
+
+// 点击下一条的方法
+const childRefYueBing = ref<any>()
+const onNextIntro = () => {
+  childRefYueBing.value.onNextIntro()
 }
 
 defineExpose({
-  showMenu
+  onMenuOpen
 })
 </script>
 
 <template>
   <div
-    v-if="show"
-    @click="showMenu"
+    v-if="menuVisible"
+    @click="onMenuOpen"
     id="menu"
     class="menu animate__animated animate__backInUp backdrop-blur-xl bg-white/10 flex justify-center items-center"
   >
     <!-- 关闭按钮 -->
     <button
-      v-if="showButton"
-      @click="closeMenu"
-      id="closeMenu"
+      v-if="buttonVisible"
+      @click="onMenuClose"
+      id="close-menu"
       class="btn btn-circle glass animate__animated animate__zoomInUp fixed top-5 right-5"
     >
       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -67,33 +62,9 @@ defineExpose({
       </svg>
     </button>
 
-    <!-- 猜灯谜 -->
-    <button
-      v-if="lanternButtonVisible"
-      id="openLanternRiddle"
-      @click="showLanternRiddle"
-      class="btn animate__animated animate__zoomInUp"
-    >
-      猜灯谜
-    </button>
-    <LanternRiddle ref="LanternRiddleRef" />
-
-    <!-- 个人信息 -->
-    <button class="btn fixed bottom-5" onclick="my_modal_1.showModal()">查看开发者信息</button>
-    <dialog id="my_modal_1" class="modal">
-      <div class="modal-box">
-        <h3 class="font-bold text-lg">开发者信息</h3>
-        <p class="py-4 text-lg">姓名：范春阳</p>
-        <p class="py-4 text-lg">学号：07212668</p>
-        <p class="py-4 text-lg">学院：环境与测绘学院</p>
-        <p class="py-4 text-lg">班级：遥感科学与技术2021-01班</p>
-        <div class="modal-action">
-          <form method="dialog">
-            <button class="btn">关闭</button>
-          </form>
-        </div>
-      </div>
-    </dialog>
+    <!-- 菜单内容 -->
+    <IntroZhong @on-next-intro="onNextIntro" />
+    <YueBing ref="childRefYueBing" />
   </div>
 </template>
 
@@ -102,12 +73,11 @@ defineExpose({
   float: left;
   // 让菜单居中
   position: fixed;
-  top: calc(50% - 270px);
-  left: calc(50% - 480px);
+  left: calc(50% - (1920px / 1.5 / 2));
+  top: calc(50% - (1080px / 1.5 / 2));
   // 设置大小
-  width: 960px;
-  height: 540px;
-  // 圆角
-  border-radius: 30px;
+  width: calc(1920px / 1.5);
+  height: calc(1080px / 1.5);
+  border-radius: 30px; // 圆角
 }
 </style>

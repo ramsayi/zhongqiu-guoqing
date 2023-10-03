@@ -25,8 +25,6 @@ animate.css https://animate.style/
 
 tailwindcss https://tailwindcss.com/
 
-<!-- daisyui https://daisyui.com/ -->
+daisyui https://daisyui.com/
 
 aplayer https://aplayer.js.org/
-
-primevue https://primevue.org/

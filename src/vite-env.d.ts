@@ -8,3 +8,4 @@ declare module '*.vue' {
 
 declare module 'animejs'
 declare module 'aplayer'
+declare module 'ityped'

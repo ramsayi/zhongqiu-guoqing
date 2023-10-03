@@ -2,6 +2,7 @@
 import anime from 'animejs'
 import { onMounted } from 'vue';
 
+// 定义建筑的动画
 const building = () => {
   anime({
     targets: '.building',

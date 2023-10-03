@@ -1,0 +1,13 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@font-face {
+  font-family: 'douYuZhuiGuangTi';
+  src: url('/fonts/douyuzhuiguangti.ttf');
+}
+
+@font-face {
+  font-family: 'xingYueXingShu';
+  src: url('/fonts/星月行书.ttf');
+}

@@ -1,88 +1,95 @@
 <script lang="ts" setup>
 import anime from 'animejs'
-import { onMounted } from 'vue';
+import { onMounted } from 'vue'
 
+// 定义鲜花1的动画
 const flower1 = () => {
   anime({
-    targets: '.flower1',
-    translateX: 10,
-    translateY: -20,
-    easing: 'easeInOutSine',
-    duration: 3000,
-    direction: 'alternate',
-    loop: true
+    targets: '.flower1', // 选择器
+    translateX: 10, // x轴偏移量
+    translateY: -20, // y轴偏移量
+    easing: 'easeInOutSine', // 缓动函数
+    duration: 3000, // 动画时间
+    direction: 'alternate', // 循环方式
+    loop: true // 是否循环
   })
 }
 
+// 定义鲜花2的动画
 const flower2 = () => {
   anime({
-    targets: '.flower2',
-    translateX: -10,
-    translateY: -20,
-    easing: 'easeInOutSine',
-    duration: 2500,
-    direction: 'alternate',
-    loop: true
+    targets: '.flower2', // 选择器
+    translateX: -10, // x轴偏移量
+    translateY: -20, // y轴偏移量
+    easing: 'easeInOutSine', // 缓动函数
+    duration: 2500, // 动画时间
+    direction: 'alternate', // 循环方式
+    loop: true // 是否循环
   })
 }
 
+// 定义鲜花3的动画
 const flower3 = () => {
   anime({
-    targets: '.flower3',
-    translateX: 10,
-    translateY: -20,
-    easing: 'easeInOutSine',
-    duration: 3000,
-    direction: 'alternate',
-    loop: true
+    targets: '.flower3', // 选择器
+    translateX: 10, // x轴偏移量
+    translateY: -20, // y轴偏移量
+    easing: 'easeInOutSine', // 缓动函数
+    duration: 3000, // 动画时间
+    direction: 'alternate', // 循环方式
+    loop: true // 是否循环
   })
 }
 
+// 定义鲜花4的动画
 const flower4 = () => {
   anime({
-    targets: '.flower4',
-    translateX: -10,
-    translateY: -20,
-    easing: 'easeInOutSine',
-    duration: 2500,
-    direction: 'alternate',
-    loop: true
+    targets: '.flower4', // 选择器
+    translateX: -10, // x轴偏移量
+    translateY: -20, // y轴偏移量
+    easing: 'easeInOutSine', // 缓动函数
+    duration: 2500, // 动画时间
+    direction: 'alternate', // 循环方式
+    loop: true // 是否循环
   })
 }
 
+// 定义鲜花5的动画
 const flower5 = () => {
   anime({
-    targets: '.flower5',
-    translateX: 10,
-    translateY: -20,
-    easing: 'easeInOutSine',
-    duration: 3000,
-    direction: 'alternate',
-    loop: true
+    targets: '.flower5', // 选择器
+    translateX: 10, //  x轴偏移量
+    translateY: -20, // y轴偏移量
+    easing: 'easeInOutSine', // 缓动函数
+    duration: 3000, // 动画时间
+    direction: 'alternate', // 循环方式
+    loop: true // 是否循环
   })
 }
 
+// 定义鲜花6的动画
 const flower6 = () => {
   anime({
-    targets: '.flower6',
-    translateX: -10,
-    translateY: -20,
-    easing: 'easeInOutSine',
-    duration: 2500,
-    direction: 'alternate',
-    loop: true
+    targets: '.flower6', // 选择器
+    translateX: -10, // x轴偏移量
+    translateY: -20, // y轴偏移量
+    easing: 'easeInOutSine', // 缓动函数
+    duration: 2500,   // 动画时间
+    direction: 'alternate', // 循环方式
+    loop: true // 是否循环
   })
 }
 
+// 定义鲜花7的动画
 const flower7 = () => {
   anime({
-    targets: '.flower7',
-    translateX: 10,
-    translateY: -20,
-    easing: 'easeInOutSine',
-    duration: 3000,
-    direction: 'alternate',
-    loop: true
+    targets: '.flower7', // 选择器
+    translateX: 10, // x轴偏移量
+    translateY: -20, // y轴偏移量
+    easing: 'easeInOutSine', // 缓动函数
+    duration: 3000, // 动画时间
+    direction: 'alternate', // 循环方式
+    loop: true // 是否循环
   })
 }
 
@@ -109,14 +116,14 @@ onMounted(() => {
 
 <style lang="scss" scoped>
 .flower {
-  position: fixed;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  position: fixed; // 固定定位
+  background-position: center center; // 背景图片居中
+  background-repeat: no-repeat; // 背景图片不重复
+  background-size: cover; // 背景图片自适应
   img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    width: 100%; // 图片宽度100%
+    height: 100%; // 图片高度100%
+    object-fit: cover; // 图片自适应
   }
 }
 .flower1 {

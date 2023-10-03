@@ -2,6 +2,7 @@
 import anime from 'animejs'
 import { onMounted } from 'vue'
 
+// 定义牡丹花左侧的动画
 const moutanWaveLeft = () => {
   anime({
     targets: '.moutan-left',
@@ -14,6 +15,7 @@ const moutanWaveLeft = () => {
   })
 }
 
+// 定义牡丹花右侧的动画
 const moutanWaveRight = () => {
   anime({
     targets: '.moutan-right',

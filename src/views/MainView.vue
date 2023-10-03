@@ -9,14 +9,16 @@ import TitleText from '../components/MainView/TitleText.vue'
 import AudioPlayer from '../components/MainView/AudioPlayer.vue'
 import { ref } from 'vue'
 
+// 高斯模糊菜单子组件的引用
 const childRefMenuBlur = ref<any>()
-const onShowMenu = () => {
-  childRefMenuBlur.value.showMenu()
+// 定义显示菜单的方法
+const onMenuOpen = () => {
+  childRefMenuBlur.value.onMenuOpen() // 调用子组件的方法
 }
 </script>
 
 <template>
-  <div class="container no-scroll" @click="onShowMenu">
+  <div class="container no-scroll" @click="onMenuOpen">
     <MoonRotate class="common" />
     <MoutanWave class="common" />
     <TianAnmen class="common" />
@@ -26,7 +28,7 @@ const onShowMenu = () => {
     <AudioPlayer />
   </div>
 
-  <MenuView ref="childRefMenuBlur" class="menu" />
+  <MenuView ref="childRefMenuBlur" class="z-50" />
 </template>
 
 <style lang="scss" scoped>
@@ -44,8 +46,5 @@ const onShowMenu = () => {
 }
 .common {
   pointer-events: none;
-}
-.menu {
-  z-index: 999;
 }
 </style>

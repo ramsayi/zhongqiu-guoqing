@@ -12,18 +12,18 @@ export default defineConfig(({ command }) => {
 
   const isServe = command === 'serve'
   const isBuild = command === 'build'
-  const sourcemap = isServe || !!process.env.VSCODE_DEBUG
+  const sourcemap = isServe || !!process.env.VSCODE_DEBUG // 是否生成 sourcemap
 
   return {
     plugins: [
       vue(),
       electron([
         {
-          // Main process entry file of the Electron App.
+          // Electron的主进程入口
           entry: 'electron/main/index.ts',
           onstart({ startup }) {
             if (process.env.VSCODE_DEBUG) {
-              console.log(/* For `.vscode/.debug.script.mjs` */'[startup] Electron App')
+              console.log(/* For `.vscode/.debug.script.mjs` */ '[startup] Electron App')
             } else {
               startup()
             }
@@ -34,24 +34,24 @@ export default defineConfig(({ command }) => {
               minify: isBuild,
               outDir: 'dist-electron/main',
               rollupOptions: {
-                // Some third-party Node.js libraries may not be built correctly by Vite, especially `C/C++` addons, 
+                // Some third-party Node.js libraries may not be built correctly by Vite, especially `C/C++` addons,
                 // we can use `external` to exclude them to ensure they work correctly.
                 // Others need to put them in `dependencies` to ensure they are collected into `app.asar` after the app is built.
                 // Of course, this is not absolute, just this way is relatively simple. :)
-                external: Object.keys('dependencies' in pkg ? pkg.dependencies : {}),
-              },
+                external: Object.keys('dependencies' in pkg ? pkg.dependencies : {})
+              }
             },
             plugins: [
               // This is just an option to improve build performance, it's non-deterministic!
-              // e.g. `import log from 'electron-log'` -> `const log = require('electron-log')` 
-              isServe && notBundle(),
-            ],
-          },
+              // e.g. `import log from 'electron-log'` -> `const log = require('electron-log')`
+              isServe && notBundle()
+            ]
+          }
         },
         {
           entry: 'electron/preload/index.ts',
           onstart({ reload }) {
-            // Notify the Renderer process to reload the page when the Preload scripts build is complete, 
+            // Notify the Renderer process to reload the page when the Preload scripts build is complete,
             // instead of restarting the entire Electron App.
             reload()
           },
@@ -61,25 +61,25 @@ export default defineConfig(({ command }) => {
               minify: isBuild,
               outDir: 'dist-electron/preload',
               rollupOptions: {
-                external: Object.keys('dependencies' in pkg ? pkg.dependencies : {}),
-              },
+                external: Object.keys('dependencies' in pkg ? pkg.dependencies : {})
+              }
             },
-            plugins: [
-              isServe && notBundle(),
-            ],
-          },
+            plugins: [isServe && notBundle()]
+          }
         }
       ]),
       // Use Node.js API in the Renderer process
-      renderer(),
+      renderer()
     ],
-    server: process.env.VSCODE_DEBUG && (() => {
-      const url = new URL(pkg.debug.env.VITE_DEV_SERVER_URL)
-      return {
-        host: url.hostname,
-        port: +url.port,
-      }
-    })(),
-    clearScreen: false,
+    server:
+      process.env.VSCODE_DEBUG &&
+      (() => {
+        const url = new URL(pkg.debug.env.VITE_DEV_SERVER_URL)
+        return {
+          host: url.hostname,
+          port: +url.port
+        }
+      })(),
+    clearScreen: false
   }
 })
